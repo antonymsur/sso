@@ -1,4 +1,4 @@
-"""app2 URL Configuration
+"""app3 URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.9/topics/http/urls/
@@ -14,8 +14,9 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url
-from helpservice.views import *
+from helloservice.views import *
 
 urlpatterns = [
-    url(r'^helpservice/',helpservice),
+    url(r'^hello2/',hello2),
+    url(r'',hello2),
 ]

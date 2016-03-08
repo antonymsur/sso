@@ -135,8 +135,6 @@ AUTH_TYPE = 'code' #code id_token token , currently supports only code
 
 AUTH_SCOPE = 'openid%20profile%20email' ##value must contain 'openid' and optional(profile, email, address, phone) others
 
-AUTH_PROTO = 'OIDC' #OR 'CAS' with LOGIN_URL  = "http://login.example.com:8080/login?service="+request.build_absolute_uri()
-
 
 import logging
 

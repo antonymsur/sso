@@ -23,7 +23,7 @@ def hello(request):
 	state = request.GET.get('state')
         if (code and state == stateOpaqueValue):
 	    value = post_message(code)
-	    return HttpResponse("Hello  user!  "+ value )
+	    return HttpResponse("Hello  user!  "+json.dumps(value) )
     except (ValueError, AttributeError ):
             return HttpResponseRedirect(loginurl)
     else:

@@ -31,8 +31,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -45,8 +43,6 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -120,3 +116,28 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+APP_ID = '999180'  #Client Identifier
+
+APP_SECRET = 'de04368295628fd0620ab8bf67e304ee'
+
+LOGIN_URL = 'http://login.example.com:8080/openid/authorize?response_type=code'
+
+APP_URL = 'http%3A%2F%2Fapp2.example.com%3A8082%2Fhelpservice' #where it needs to get redirected after succesful login/authN&Z
+
+OID_TOKEN_URL = 'http://login.example.com:8080/openid/token'
+
+AUTH_TYPE = 'code' #code id_token token , currently supports only code
+
+AUTH_SCOPE = 'openid%20profile%20email' ##value must contain 'openid' and optional(profile, email, address, phone) others
+
+AUTH_PROTO = 'OIDC' #OR 'CAS' with LOGIN_URL  = "http://login.example.com:8080/login?service="+request.build_absolute_uri()
+
+import logging
+
+logging.basicConfig(
+    level = logging.DEBUG,
+    format = " %(levelname)s %(name)s: %(message)s",
+)
+
