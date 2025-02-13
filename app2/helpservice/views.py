@@ -3,6 +3,7 @@ import urllib
 import json
 import requests
 from django.conf import settings
+import random
 
 def helpservice(request):
     if settings.AUTH_PROTO == 'OIDC':
@@ -28,7 +29,11 @@ def helpservice(request):
             return HttpResponseRedirect(loginurl)
     else:
         return HttpResponseRedirect(loginurl)
-       
+
+def generate_nonce(length=8):
+    """Generate pseudo-random number."""
+    return ''.join([str(random.randint(0, 9)) for i in range(length)])
+
 def post_message(code):
     params = 'grant_type=authorization_code&code='+code+'&client_id='+settings.APP_ID+'&redirect_uri='+settings.APP_URL+'&client_secret='+settings.APP_SECRET
     response = requests.post(settings.OID_TOKEN_URL,params,headers={'Content-Type': 'application/x-www-form-urlencoded'})
