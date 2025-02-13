@@ -87,7 +87,7 @@ LOGIN_REDIRECT_URL = '/'
 # OIDC Provider settings
 
 SITE_URL = 'http://localhost:8000'
-
+print(SITE_URL)
 import logging
 logging.basicConfig(
     level = logging.INFO,
