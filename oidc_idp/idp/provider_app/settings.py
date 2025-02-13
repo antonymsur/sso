@@ -90,6 +90,6 @@ SITE_URL = 'http://localhost:8000'
 
 import logging
 logging.basicConfig(
-    level = logging.DEBUG,
+    level = logging.INFO,
     format = " %(levelname)s %(name)s: %(message)s",
 )
