@@ -32,6 +32,7 @@ def helpservice(request):
 def post_message(code):
     params = 'grant_type=authorization_code&code='+code+'&client_id='+settings.APP_ID+'&redirect_uri='+settings.APP_URL+'&client_secret='+settings.APP_SECRET
     response = requests.post(settings.OID_TOKEN_URL,params,headers={'Content-Type': 'application/x-www-form-urlencoded'})
+    print(response.txt)
     return response.text
 
 
