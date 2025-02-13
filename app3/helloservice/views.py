@@ -18,6 +18,7 @@ def hello2(request):
 	loginurl = oidpUrl + '&' + appId + '&' +redirectUrl + '&' + scope + '&' + state + '&' +nonce 
     else:
 	loginurl = settings.LOGIN_URL
+    print(loginurl)
     try:
 	code = request.GET.get(authType)
 	state = request.GET.get('state')
