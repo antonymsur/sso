@@ -3,6 +3,7 @@ import urllib
 import json
 import requests
 from django.conf import settings
+import random
 
 def hello2(request):
     if settings.AUTH_PROTO == 'OIDC':
@@ -13,7 +14,7 @@ def hello2(request):
 	scope = 'scope=' + settings.AUTH_SCOPE
 	stateOpaqueValue = 'af0ifjsldkj'  #currenly hardcoded. This needs to be generated 
 	state = 'state='+stateOpaqueValue #opaque value used to maintain state between request and call back
-	nonceValue = 'n-0S6_WzA2Mj'       #currenly hardcoded. This needs to be generated 
+	nonceValue = generate_nonce() #'n-0S6_WzA2Mj'       #currenly hardcoded. This needs to be generated 
 	nonce = 'nonce='+nonceValue       #associate Client session with an ID Token , this used to mitigate replay attack
 	loginurl = oidpUrl + '&' + appId + '&' +redirectUrl + '&' + scope + '&' + state + '&' +nonce 
     else:
@@ -33,7 +34,11 @@ def hello2(request):
 	    return HttpResponseRedirect(loginurl)
     else:
         return HttpResponseRedirect(loginurl)
-       
+
+def generate_nonce(length=8):
+    """Generate pseudo-random number."""
+    return ''.join([str(random.randint(0, 9)) for i in range(length)])
+
 def post_message(code):
     params = 'grant_type=authorization_code&code='+code+'&client_id='+settings.APP_ID+'&redirect_uri='+settings.APP_URL+'&client_secret='+settings.APP_SECRET
     response = requests.post(settings.OID_TOKEN_URL,params,headers={'Content-Type': 'application/x-www-form-urlencoded'})
