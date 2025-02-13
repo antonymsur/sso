@@ -24,8 +24,12 @@ def hello2(request):
         if (code and state == stateOpaqueValue):
 	    value = post_message(code)
 	    return HttpResponse("Hello Again ! <br> "+ value )
-    except (ValueError, AttributeError ):
+    except ValueError as ve:
+	    print(ve)
             return HttpResponseRedirect(loginurl)
+    except AttributeError as ae:
+	    print(ae)
+	    return HttpResponseRedirect(loginurl)
     else:
         return HttpResponseRedirect(loginurl)
        
